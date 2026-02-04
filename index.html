@@ -1,11 +1,29 @@
+<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Plataforma - Confirmación de información de devoto</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="main-styles.css">
+    <link rel="stylesheet" href="form-module.css">
+    <link rel="stylesheet" href="qr-preview.css">
+    <link rel="stylesheet" href="registration-form.css">
 </head>
 <body>
-    <script type="module" src="index.js"></script>
+    <div id="app"></div>
+
+    <!-- Scripts de módulos -->
+    <script src="FormModule.js"></script>
+    <script src="QRPreviewModule.js"></script>
+    <script src="RegistrationFormModule.js"></script>
+    
+    <!-- Router principal -->
+    <script src="AppRouter.js"></script>
+    
+    <!-- Inicialización -->
+    <script src="app-init.js"></script>
 </body>
 </html>
