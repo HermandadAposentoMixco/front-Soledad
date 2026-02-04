@@ -20,7 +20,6 @@ class AppRouter {
                 <div class="header-content">
                     <div class="logo-container">
                         <img src="escudoSoledad.png" alt="" class="logo">
-                            
                             <path d="M50 20 L60 45 L85 45 L65 60 L72 85 L50 70 L28 85 L35 60 L15 45 L40 45 Z" 
                                   fill="#d4af37" stroke="#d4af37" stroke-width="1"/>
                             <circle cx="50" cy="50" r="8" fill="#d4af37"/>

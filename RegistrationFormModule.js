@@ -66,7 +66,6 @@ class RegistrationFormModule {
                                 id="cui"
                                 name="cui"
                                 value="3059567870301"
-                                disabled
                             >
                         </div>
                         
