@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formulario.css">
+    <title>Document</title>
+</head>
+<body>
+     <div class="wrap">
+    <header>
+      <div class="logo"><img src="escudoSoledad.png" alt="" class="logo"></div>
+      <div>
+        <div style="font-weight:700">Plataforma - Confirmación de información de devoto</div>
+        <div style="font-size:12px;color:#cfcfcf">Sistema de actualización / comprobante con QR</div>
+      </div>
+    </header>
+
+    <div style="height:18px"></div>
+
+    <div class="grid">
+      <!-- Paso 1 -->
+      <div>
+        <div id="step1" class="card visible">
+          <h1>CONFIRMACIÓN DE INFORMACIÓN DE DEVOTO</h1>
+          <div class="instructions muted">
+            <p><strong>Instrucciones</strong></p>
+            <ul>
+              <li>Ingrese los 13 dígitos de su número de DPI o CUI y haga clic en <strong>CONSULTAR INFORMACIÓN</strong>.</li>
+            </ul>
+          </div>
+          <label><input type="checkbox" id="noGuate"> <span class="muted">No soy de Guatemala</span></label>
+          <label>Documento de Identificación *</label>
+          <input id="cuiInput" type="text" placeholder="Ej: 3059567870301" inputmode="numeric" maxlength="13">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;">
+            <div class="muted">Los campos con * son obligatorios.</div>
+            <button id="consultBtn" class="btn">CONSULTAR INFORMACIÓN</button>
+          </div>
+        </div>
+
+        <!-- Paso 2 -->
+        <div id="step2" class="card form-section">
+          <h1>Registro / Actualización de Devoto</h1>
+          <form id="devotoForm">
+            <div class="row">
+              <div><label>Nombres *</label><input id="nombres" type="text" required></div>
+              <div><label>Apellidos *</label><input id="apellidos" type="text" required></div>
+            </div>
+
+            <div class="row">
+              <div><label>CUI / DPI *</label><input id="cuiForm" type="text" readonly></div>
+              <div><label>Teléfono</label><input id="telefono" type="tel"></div>
+            </div>
+
+            <label>Correo electrónico *</label><input id="correo" type="email" required placeholder="ejemplo@correo.com">
+            <label>Sexo</label>
+            <label style="margin-left:10px"><input type="radio" name="sexo" value="Mujer"> Mujer</label>
+            <label style="margin-left:10px"><input type="radio" name="sexo" value="Hombre"> Hombre</label>
+            <label>Dirección</label><input id="direccion" type="text" placeholder="Ciudad, Calle, etc.">
+            <label>Fecha de nacimiento</label><input id="fn" type="date">
+            <label>Seleccione o confirme el turno que has cargado actualmente </label>
+            <select id="nota" required> Seleciona un turno que has cargado actualmente
+              <option value="" disabled selected>Seleccione un turno</option>
+<option>Honor Salida - Santo Entierro</option>
+  <option>Honor Entrada - Santo Entierro</option>
+  <option>Honor Salida - Via Crusis</option>
+  <option>Honor Entrada - Vía Crusis</option>
+  <option>Primera Comisión Salida - Santo Entierro</option>
+  <option>Extra ordinario Encuentro - Vía Crusis</option>
+  <option>Extra Ordinario Cementerio</option>
+  <option>Extra Ordinario Panzalic - Sábado Santo</option>
+  <option>Extra Ordinario Calle Real- Santo Entierro</option>
+  <option>Extra Ordinario Parque de la Cruz - Santo Entierro</option>
+  <option>Extra Ordinario Monumento a la Virgen</option>
+  <option>Extra Ordinario Caballeros - Santo Entierro</option>
+  <option>Turno Ordinario Via Crusis</option>
+  <option>Turno Ordinario Santo Entierro</option>
+  <option>Turno Ordinario Sábado Santo</option>
+</select>
+
+
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+              <button type="button" id="backBtn" class="btn secondary">Volver</button>
+              <button type="submit" class="btn">Generar comprobante (PDF)</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Vista previa -->
+      <div>
+        <div class="card center">
+          <h3>Vista previa / QR</h3>
+          <img id="previewQr" src="" style="width:220px;height:220px;border:1px solid #eee;padding:10px;background:white">
+          <div id="previewText" class="muted">Aquí se mostrará el contenido del QR cuando generes el comprobante.</div>
+          <button id="downloadQrBtn" class="btn secondary" style="padding:8px 10px;margin-top:8px;">Descargar QR</button>
+          <button id="btnPDF" class="btn" style="margin-top:12px;">Descargar PDF</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comprobante -->
+    <div id="comprobanteContainer" style="display:none; padding-top:18px;">
+      <div id="comprobante">
+        <div class="top">
+          <div class="brand">
+            <div class="logo"><img src="escudoSoledad.png" alt="" class="logo"></div>
+            <div>
+              <div style="font-weight:700;color:#b8860b">HERMANDAD VIRGEN DE LA SOLEDAD MIXCO</div>
+              <div style="font-size:12px;color:#777">Identificación Devoto</div>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:12px;color:#777">DOCUMENTO</div>
+            <div id="fechaComprobante" style="font-weight:700"></div>
+          </div>
+        </div>
+
+        <div class="titulo">REGISTRO DEVOTO</div>
+        <div class="cuiGrande" id="cuiGrande"></div>
+
+        <div class="registro">
+          <div class="datos">
+            <table>
+              <tr><td class="label">CUI</td><td id="tdCui"></td></tr>
+              <tr><td class="label">Nombres</td><td id="tdNombres"></td></tr>
+              <tr><td class="label">Apellidos</td><td id="tdApellidos"></td></tr>
+              <tr><td class="label">Fecha Nacimiento</td><td id="tdFn"></td></tr>
+              <tr><td class="label">Teléfono</td><td id="tdTel"></td></tr>
+              <tr><td class="label">Correo</td><td id="tdCorreo"></td></tr>
+              <tr><td class="label">Dirección</td><td id="tdDir"></td></tr>
+              <tr><td class="label">Observaciones / Turno</td><td id="tdNota"></td></tr>
+            </table>
+          </div>
+          <div class="qrBox">
+            <img id="qrComprobante" src="" style="width:160px;height:160px;border:1px solid #ddd;padding:6px;background:white">
+            <div><strong>Contraseña:</strong> <span id="contraseñaPdf" style="font-weight:700"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script type="module" src="./formulario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
