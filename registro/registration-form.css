@@ -1,51 +1,21 @@
-/* registration-form.css */
-:root {
-    --primary-color: #f0b429;
-    --primary-hover: #d9a01f;
-    --gray-color: #6b6b6b;
-    --gray-hover: #5a5a5a;
-    --text-dark: #1a1a1a;
-    --text-gray: #6b6b6b;
-    --text-light: #999;
-    --border-color: #d0d0d0;
-    --bg-white: #ffffff;
-    --bg-light: #f5f5f5;
-    --blue-radio: #2196F3;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background-color: var(--bg-light);
-    padding: 20px;
-}
-
+/* registration-form.css - OPTIMIZADO */
 .registration-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    background-color: var(--bg-white);
-    border-radius: 12px;
-    padding: 50px 60px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0;
 }
 
 .registration-title {
-    font-size: 38px;
+    font-size: var(--font-3xl);
     font-weight: 700;
     color: var(--text-dark);
-    margin-bottom: 40px;
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.2;
 }
 
 .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
 .form-row.single {
@@ -58,10 +28,10 @@ body {
 }
 
 .field-label {
-    font-size: 16px;
+    font-size: var(--font-base);
     font-weight: 500;
     color: var(--text-dark);
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-sm);
 }
 
 .required-mark {
@@ -70,8 +40,8 @@ body {
 
 .field-input {
     width: 100%;
-    padding: 16px 20px;
-    font-size: 16px;
+    padding: clamp(12px, 2vw, 16px) clamp(16px, 2.5vw, 20px);
+    font-size: var(--font-base);
     color: var(--text-dark);
     border: 1px solid var(--border-color);
     border-radius: 6px;
@@ -92,34 +62,36 @@ body {
 .field-input:disabled {
     background-color: var(--bg-light);
     cursor: not-allowed;
+    opacity: 0.7;
 }
 
 /* Radio buttons */
 .radio-group {
-    margin-top: 15px;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .radio-label {
-    font-size: 16px;
+    font-size: var(--font-base);
     font-weight: 500;
     color: var(--text-dark);
-    margin-bottom: 15px;
+    margin-bottom: var(--spacing-md);
     display: block;
 }
 
 .radio-option {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: var(--spacing-md);
     cursor: pointer;
 }
 
 .custom-radio {
-    width: 22px;
-    height: 22px;
+    width: clamp(20px, 3vw, 24px);
+    height: clamp(20px, 3vw, 24px);
     border: 2px solid var(--border-color);
     border-radius: 50%;
-    margin-right: 12px;
+    margin-right: var(--spacing-sm);
     position: relative;
     transition: all 0.3s ease;
     flex-shrink: 0;
@@ -139,14 +111,14 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
+    width: clamp(10px, 2vw, 12px);
+    height: clamp(10px, 2vw, 12px);
     background-color: var(--blue-radio);
     border-radius: 50%;
 }
 
 .radio-text {
-    font-size: 16px;
+    font-size: var(--font-base);
     color: var(--text-dark);
     user-select: none;
 }
@@ -171,8 +143,8 @@ body {
 /* Select dropdown */
 .field-select {
     width: 100%;
-    padding: 16px 20px;
-    font-size: 16px;
+    padding: clamp(12px, 2vw, 16px) clamp(16px, 2.5vw, 20px);
+    font-size: var(--font-base);
     color: var(--text-dark);
     border: 1px solid var(--border-color);
     border-radius: 6px;
@@ -196,19 +168,21 @@ body {
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    gap: 20px;
-    margin-top: 50px;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    flex-wrap: wrap;
 }
 
 .action-button {
-    font-size: 18px;
+    font-size: var(--font-base);
     font-weight: 600;
-    padding: 16px 45px;
+    padding: clamp(12px, 2vw, 16px) clamp(35px, 6vw, 45px);
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
 }
 
 .action-button:hover {
@@ -239,24 +213,25 @@ body {
 }
 
 @media (max-width: 768px) {
-    .registration-container {
-        padding: 30px 20px;
-    }
-
     .registration-title {
-        font-size: 28px;
+        font-size: var(--font-2xl);
     }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
+    
     .form-actions {
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
-
+    
     .action-button {
         width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .registration-title {
+        font-size: var(--font-xl);
+    }
+    
+    .form-row {
+        gap: var(--spacing-md);
     }
 }
