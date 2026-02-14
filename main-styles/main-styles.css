@@ -200,3 +200,19 @@ body{
     padding:12px;
     font-size:14px;
 }
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

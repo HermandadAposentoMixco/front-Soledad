@@ -1,33 +1,21 @@
-export class QRPreviewModule {
+import { generarPDF } from "../utils/pdfGenerator.js";
+import { generarQR } from "../utils/qrGenerator.js";
+import { guardarDevoto } from "../utils/api.js";
 
-    constructor(){
-        this.element = document.createElement("section");
-        this.element.className = "card qr";
+document.getElementById("btnGenerar").addEventListener("click", async () => {
 
-        this.build();
-    }
+  const datos = {
+    nombres: nombres.value,
+    apellidos: apellidos.value,
+    cui: cui.value,
+    correo: correo.value,
+    telefono: telefono.value,
+    direccion: direccion.value,
+    password: Math.random().toString(36).slice(-8)
+  };
 
-    build(){
+  await guardarDevoto(datos);
 
-        const title = document.createElement("h3");
-        title.textContent = "Vista previa / QR";
-
-        this.qrBox = document.createElement("div");
-        this.qrBox.className = "qr-box";
-
-        const btnGroup = document.createElement("div");
-        btnGroup.className = "btn-group";
-
-        const qrBtn = document.createElement("button");
-        qrBtn.textContent = "Descargar QR";
-        qrBtn.className = "btn-secondary";
-
-        const pdfBtn = document.createElement("button");
-        pdfBtn.textContent = "Descargar PDF";
-        pdfBtn.className = "btn-primary";
-
-        btnGroup.append(qrBtn, pdfBtn);
-
-        this.element.append(title, this.qrBox, btnGroup);
-    }
-}
+  generarQR(datos);
+  generarPDF(datos);
+});

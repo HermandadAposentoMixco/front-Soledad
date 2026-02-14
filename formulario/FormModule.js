@@ -66,3 +66,24 @@ export class FormModule {
         );
     }
 }
+import { consultarDevoto } from "../utils/api.js";
+
+document.getElementById("btnConsultar").addEventListener("click", async () => {
+  const cui = document.getElementById("cuiInput").value;
+
+  if (cui.length !== 13) {
+    alert("CUI inválido");
+    return;
+  }
+
+  try {
+    const data = await consultarDevoto(cui);
+
+    // Redirige al formulario y llena datos
+    localStorage.setItem("devotoData", JSON.stringify(data));
+    window.location.href = "formulario.html";
+
+  } catch (error) {
+    alert("No se encontró el devoto");
+  }
+});
